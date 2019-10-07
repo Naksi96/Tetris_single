@@ -81,14 +81,20 @@ const Tetris = () => {
 
     const hardDropPlayer = () => {
         let i = 0;
-        setDropTime(null);
         for(; i < STAGE_HEIGHT; i++) {
             if (checkCollision(player, stage, { x: 0, y: i })) {
                 break;
             }
         }
+        console.log(player);
+        console.log(player.initialHeight);
+        if (i - player.initialHeight < 0) {
+            console.log(player);
+            console.log("GAME OVER!!!");
+            setGameOver(true);
+            setDropTime(null);
+        }
         updatePlayerPos({ x: 0, y: (i - 1), collided: true });
-        setDropTime(1000 / (level + 1) + 200);
     }
 
     const move = ({ keyCode }) => {

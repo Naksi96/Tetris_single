@@ -7,7 +7,8 @@ export const usePlayer = () => {
     const [player, setPlayer] = useState({
         pos: { x: 0, y: 0 },
         tetromino: TETROMINOS[0].shape,
-        collided: false
+        collided: false,
+        initialHeight: TETROMINOS[0].initialHeight
     });
 
     const rotate = (matrix, dir) => {
@@ -48,10 +49,13 @@ export const usePlayer = () => {
     }
 
     const resetPlayer = useCallback(() => {
+        const randTet = randomTetromino();
+        console.log(randTet);
         setPlayer({
             pos: { x: STAGE_WIDTH / 2 - 2, y: 0 },
-            tetromino: randomTetromino().shape,
-            collided: false
+            tetromino: randTet.shape,
+            collided: false,
+            initialHeight: randTet.initialHeight
         })
     }, [])
 
