@@ -1,0 +1,114 @@
+$dark-color: #1f1f1f;
+$dark-font: #ffffff;
+$dark-border: #3e3e3e;
+
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap');
+
+body {
+  margin: 0;
+  background-color: $dark-color;
+  font-family: 'Noto Sans', sans-serif;
+
+}
+
+.styledTetris {
+  display: flex;
+    align-items: flex-start;
+    padding: 40px;
+    max-width: 900px;
+
+    aside {
+        width: 100%;
+        max-width: 200px;
+        display: block;
+        padding: 0 20px;
+    }
+}
+
+// NAVBAR
+.navbar {
+  p {
+    text-align: center;
+    font-size: 3em;
+    font-family: 'Press Start 2P', cursive;
+
+    margin: 20px 0 20px 0;
+    }
+  
+  a {
+    text-decoration: none;
+  
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    transition: all 0.5s;
+  }
+  
+  p:nth-child(1) a {
+    color: #FF1177;
+    font-family: 'Press Start 2P', cursive;
+  }
+  
+  p:nth-child(1) a:hover {
+    -webkit-animation: neon3 1.5s ease-in-out infinite alternate;
+    -moz-animation: neon3 1.5s ease-in-out infinite alternate;
+    animation: neon3 1.5s ease-in-out infinite alternate;
+  }
+  
+  p a:hover {
+    color: #ffffff;
+  }
+  /*glow for webkit*/
+  
+  @-webkit-keyframes neon3 {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+    }
+    to {
+      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+    }
+  }
+  @-moz-keyframes neon3 {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+    }
+    to {
+      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+    }
+  }
+  @keyframes neon3 {
+    from {
+      text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FF1177, 0 0 70px #FF1177, 0 0 80px #FF1177, 0 0 100px #FF1177, 0 0 150px #FF1177;
+    }
+    to {
+      text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FF1177, 0 0 35px #FF1177, 0 0 40px #FF1177, 0 0 50px #FF1177, 0 0 75px #FF1177;
+    }
+  }
+}
+
+// LOBBY
+.lobby {
+  padding: 40px;
+  color: $dark-font;
+  table, th, td {
+    border: 1px solid $dark-border;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th {
+    height: 50px;
+    font-weight: bold;
+    
+  }
+  th.room {
+    width: 80px;
+  }
+  tr td {
+    display: table-cell;
+    vertical-align: inherit;
+    text-align: -internal-center;
+  }
+  
+}
