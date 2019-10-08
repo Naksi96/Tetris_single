@@ -90,14 +90,19 @@ body {
 .lobby {
   padding: 40px;
   color: $dark-font;
-  table, th, td {
-    border: 1px solid $dark-border;
-  }
+  tr:nth-child(even) {background-color: $dark-border;}
+
+  
   table {
     border-collapse: collapse;
     width: 100%;
+    border: 2px solid $dark-border;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px !important;
   }
   th {
+
     height: 50px;
     font-weight: bold;
     
@@ -105,10 +110,11 @@ body {
   th.room {
     width: 80px;
   }
+  th.host {
+    width: 100px;
+  }
   tr td {
-    display: table-cell;
-    vertical-align: inherit;
-    text-align: -internal-center;
+    text-align: center;
   }
   
 }

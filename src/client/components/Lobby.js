@@ -3,7 +3,7 @@ import React from 'react';
 const Lobby = () => {
     return (
         <div className="lobby">
-            <table>
+            <table> 
                 <tr>
                 <th className="room">Room #</th>
                 <th className="host">Host</th>

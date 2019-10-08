@@ -13,6 +13,7 @@ import { useGameStatus } from '../hooks/useGameStatus';
 import Stage from './Stage';
 import Display from './Display';
 import StartButton from './StartButton';
+import Next from './Next';
 import { STAGE_HEIGHT } from '../../gameHelpers';
 
 const Tetris = () => {
@@ -132,6 +133,12 @@ const Tetris = () => {
                     <StartButton callback={startGame} />
                 </aside>
                 <Stage  stage={stage} />
+                <aside>
+                    <div>
+                    <Next stage={stage} />
+                    </div>
+                    
+                </aside>
                 
         </div>
     )
