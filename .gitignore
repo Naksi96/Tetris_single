@@ -12,6 +12,10 @@
 # production
 /build
 
+# version control
+/server/config/dbConfig.js
+/server/config/serverConfig.json
+
 # misc
 .DS_Store
 .env.local
