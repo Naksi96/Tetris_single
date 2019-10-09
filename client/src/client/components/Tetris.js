@@ -87,7 +87,8 @@ const Tetris = () => {
         }
         console.log(player);
         console.log(player.initialHeight);
-        if (i - player.initialHeight < 0) {
+        console.log(i);
+        if (i - 1 === 0) {
             console.log(player);
             console.log("GAME OVER!!!");
             setGameOver(true);
