@@ -1,22 +1,41 @@
 $dark-color: #1f1f1f;
 $dark-font: #ffffff;
 $dark-border: #3e3e3e;
+$dark-button: #3d3d3d;
+$logo-red-cololr: #ff1277;
 
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap');
 
 body {
-  margin: 0;
+  margin: 0 auto;
   background-color: $dark-color;
   font-family: 'Noto Sans', sans-serif;
+  max-width: 1198.98px;
+}
+
+input {
+  background-color: black;
+  border: 1px solid $dark-border;
+  color: white;
+}
+
+button {
+  background-color: $logo-red-cololr;
+  border: 1px solid $dark-border;
+  color: white;
+  &:hover {
+    background-color: $dark-button;
+    color: black;
+  }
 
 }
 
 .styledTetris {
   display: flex;
-    align-items: flex-start;
-    padding: 40px;
-    max-width: 900px;
+  align-items: flex-start;
+  padding: 40px;
+  max-width: 900px;
 
     aside {
         width: 100%;
@@ -117,4 +136,22 @@ body {
     text-align: center;
   }
   
+}
+
+//userInfo
+
+.userInfo {
+  display: table;
+  background-color: white;
+  border: 2px solid #333;
+  width: 372px !important;
+  height: 600px !important;
+  min-width: 372px;
+  max-width: 372px;
+  background: #111;
+  text-align:center;
+  .userInfoForm {
+    display: table-cell;
+    vertical-align: middle;
+  }
 }

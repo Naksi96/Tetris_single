@@ -13,7 +13,6 @@ const App = () => (
     <div className="App">
       <Navbar />
       <StyledDashboard>
-        <UserContainer/>
         <Lobby />
         <Tetris />
       </StyledDashboard>

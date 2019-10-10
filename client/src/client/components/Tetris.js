@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { createStage, checkCollision } from '../../gameHelpers';
 
@@ -15,6 +16,7 @@ import Display from './Display';
 import StartButton from './StartButton';
 import Next from './Next';
 import { STAGE_HEIGHT } from '../../gameHelpers';
+import UserContainer from '../containers/UserContainer'
 
 const Tetris = () => {
     const [dropTime, setDropTime] = useState(null);
@@ -24,7 +26,9 @@ const Tetris = () => {
     const [stage, setStage, rowsCleared] = useStage(player, resetPlayer);
     const [score, setScore, rows, setRows, level, setLevel] = useGameStatus(rowsCleared);
 
-    console.log('re-render');
+    const { username } = useSelector(state => state.username, "");
+
+    console.log(username)
 
     const movePlayer = dir => {
         if (!checkCollision(player, stage, { x: dir, y: 0 })) {
@@ -133,7 +137,8 @@ const Tetris = () => {
                     )}
                     <StartButton callback={startGame} />
                 </aside>
-                <Stage  stage={stage} />
+                {username ? (<UserContainer/>) : 
+                <Stage  stage={stage} />}
                 <aside>
                     <div>
                     <Next stage={stage} />
