@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { createStage } from '../../gameHelpers';
+import { randomTetromino } from '../../tetrominos';
+import { STAGE_WIDTH } from '../../gameHelpers';
 
 export const useStage = (player, resetPlayer) => {
     const [stage, setStage] = useState(createStage());
@@ -36,15 +38,34 @@ export const useStage = (player, resetPlayer) => {
                     }
                 });
             });
-            // Then check if we collided
-            if (player.collided) {
-                resetPlayer();
-                return sweepRows(newStage);
+            if (!player.gameOver) {
+                // Then check if we collided
+                if (player.collided) {
+                    let randTet = randomTetromino();
+                    let continuable = true;
+                    for (let i = 0; i < randTet.initialHeight; i++) {
+                        for (let j = 0; j < randTet.initialWidth; j++) {
+                            if (newStage[i][STAGE_WIDTH / 2 - 2 + j][1] === 'merged') {
+                                continuable = false;
+                                break ;
+                            }
+                        }
+                    }
+                    if (continuable) {
+                        resetPlayer(randTet);
+                        return sweepRows(newStage);
+                    } else {
+                        randTet = {
+                            ...randTet,
+                            gameOver: true
+                        }
+                        resetPlayer(randTet);
+                        return sweepRows(newStage);
+                    }
+                }
             }
-
             return newStage;
         };
-
         setStage(prev => updateStage(prev));
     }, [player, resetPlayer]);
 
