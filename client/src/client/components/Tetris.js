@@ -101,19 +101,20 @@ const Tetris = () => {
         updatePlayerPos({ x: 0, y: (i - 1), collided: true });
     }
 
-    const move = ({ keyCode }) => {
+    const move = e => {
+        e.preventDefault();
         if (!gameOver) {
-            if (keyCode === 37) { //left arrow
+            if (e.keyCode === 37) { //left arrow
                 movePlayer(-1);
-            } else if (keyCode === 39) { //right arrow
+            } else if (e.keyCode === 39) { //right arrow
                 movePlayer(1);
-            } else if (keyCode === 40) { //down arrow
+            } else if (e.keyCode === 40) { //down arrow
                 dropPlayer();
-            } else if (keyCode === 38) { //up arrow
+            } else if (e.keyCode === 38) { //up arrow
                 playerRotate(stage, 1);
-            } else if (keyCode === 90) {
+            } else if (e.keyCode === 90) {
                 playerRotate(stage, -1);
-            } else if (keyCode === 32) { //space bar
+            } else if (e.keyCode === 32) { //space bar
                 hardDropPlayer();
             }
         }
