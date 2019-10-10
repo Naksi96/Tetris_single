@@ -16,6 +16,7 @@ import Display from './Display';
 import StartButton from './StartButton';
 import Next from './Next';
 import { STAGE_HEIGHT } from '../../gameHelpers';
+import { randomTetromino } from '../../tetrominos';
 import UserContainer from '../containers/UserContainer'
 
 const Tetris = () => {
@@ -38,9 +39,10 @@ const Tetris = () => {
 
     const startGame = () => {
         // Reset everything
+        const randTet = randomTetromino();
         setStage(createStage());
         setDropTime(1000);
-        resetPlayer();
+        resetPlayer(randTet);
         setGameOver(false);
         setScore(0);
         setRows(0);
@@ -48,76 +50,69 @@ const Tetris = () => {
     }
 
     const drop = () => {
-        // Increase level when player has cleared 10 rows
-        if (rows > (level + 1) * 10) {
-            setLevel(prev => prev + 1);
-            // Also increase speed
-            setDropTime(1000 / (level + 1) + 200);
-        }
-        if (!checkCollision(player, stage, { x: 0, y: 1 })) {
-            updatePlayerPos({ x: 0, y: 1, collided: false });
-        } else {
-            // Game Over
-            if (player.pos.y < 1) {
-                console.log("GAME OVER!!!");
-                setGameOver(true);
-                setDropTime(null);
-            }
+        if (player.gameOver) {
+            setGameOver(true);
+            setDropTime(null);
             updatePlayerPos({ x: 0, y: 0, collided: true });
+        } else {
+            // Increase level when player has cleared 10 rows
+            if (rows > (level + 1) * 10) {
+                setLevel(prev => prev + 1);
+                // Also increase speed
+                setDropTime(1000 / (level + 1) + 200);
+            }
+            if (!checkCollision(player, stage, { x: 0, y: 1 })) {
+                updatePlayerPos({ x: 0, y: 1, collided: false });
+            } else {
+                updatePlayerPos({ x: 0, y: 0, collided: true });
+            }
         }
     }
 
     const keyUp = ({ keyCode }) => {
         if (!gameOver) {
             if (keyCode === 40) {
-                console.log("interval on");
                 setDropTime(1000 / (level + 1) + 200);
             }
         }
     }
 
     const dropPlayer = () => {
-        console.log("interval off");
         setDropTime(null);
         drop();
     }
 
     const hardDropPlayer = () => {
-        let i = 0;
-        for(; i < STAGE_HEIGHT; i++) {
-            if (checkCollision(player, stage, { x: 0, y: i })) {
-                break;
-            }
-        }
-        console.log(player);
-        console.log(player.initialHeight);
-        console.log(i);
-        if (i - 1 === 0) {
-            console.log(player);
-            console.log("GAME OVER!!!");
+        if (player.gameOver) {
             setGameOver(true);
             setDropTime(null);
+            updatePlayerPos({ x: 0, y: 0, collided: true });
+        } else {
+            let i = 0;
+            for(; i < STAGE_HEIGHT; i++) {
+                if (checkCollision(player, stage, { x: 0, y: i })) {
+                    break;
+                }
+            }
+            updatePlayerPos({ x: 0, y: (i - 1), collided: true });
         }
-        updatePlayerPos({ x: 0, y: (i - 1), collided: true });
     }
 
     const move = e => {
-        if (username) {
-            e.preventDefault();
-            if (!gameOver) {
-                if (e.keyCode === 37) { //left arrow
-                    movePlayer(-1);
-                } else if (e.keyCode === 39) { //right arrow
-                    movePlayer(1);
-                } else if (e.keyCode === 40) { //down arrow
-                    dropPlayer();
-                } else if (e.keyCode === 38) { //up arrow
-                    playerRotate(stage, 1);
-                } else if (e.keyCode === 90) {
-                    playerRotate(stage, -1);
-                } else if (e.keyCode === 32) { //space bar
-                    hardDropPlayer();
-                }
+        e.preventDefault();
+        if (!gameOver && !player.gameOver) {
+            if (e.keyCode === 37) { //left arrow
+                movePlayer(-1);
+            } else if (e.keyCode === 39) { //right arrow
+                movePlayer(1);
+            } else if (e.keyCode === 40) { //down arrow
+                dropPlayer();
+            } else if (e.keyCode === 38) { //up arrow
+                playerRotate(stage, 1);
+            } else if (e.keyCode === 90) { //z key
+                playerRotate(stage, -1);
+            } else if (e.keyCode === 32) { //space bar
+                hardDropPlayer();
             }
         }
     }
@@ -129,8 +124,8 @@ const Tetris = () => {
     return (
         <div className="styledTetris" role="button" tabIndex="0" onKeyDown={e => move(e)} onKeyUp={keyUp}>
                 <aside>
-                    {gameOver ? (
-                        <Display gameOver={gameOver} text="Game Over" />
+                    {player.gameOver ? (
+                        <Display gameOver={player.gameOver} text="Game Over" />
                     ) : (
                         <div>
                             <Display text={`Score: ${score}`} />

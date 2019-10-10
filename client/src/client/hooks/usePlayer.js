@@ -8,7 +8,8 @@ export const usePlayer = () => {
         pos: { x: 0, y: 0 },
         tetromino: TETROMINOS[0].shape,
         collided: false,
-        initialHeight: TETROMINOS[0].initialHeight
+        initialHeight: TETROMINOS[0].initialHeight,
+        initialWidth: TETROMINOS[0].initialWidth
     });
 
     const rotate = (matrix, dir) => {
@@ -48,15 +49,26 @@ export const usePlayer = () => {
         }))
     }
 
-    const resetPlayer = useCallback(() => {
-        const randTet = randomTetromino();
+    const resetPlayer = useCallback(randTet => {
         console.log(randTet);
-        setPlayer({
-            pos: { x: STAGE_WIDTH / 2 - 2, y: 0 },
-            tetromino: randTet.shape,
-            collided: false,
-            initialHeight: randTet.initialHeight
-        })
+        if (randTet.gameOver) {
+            setPlayer({
+                pos: { x: STAGE_WIDTH / 2 - 2, y: 0 },
+                tetromino: randTet.shape,
+                collided: false,
+                initialHeight: randTet.initialHeight,
+                initialWidth: randTet.initialWidth,
+                gameOver: true
+            })
+        } else {
+            setPlayer({
+                pos: { x: STAGE_WIDTH / 2 - 2, y: 0 },
+                tetromino: randTet.shape,
+                collided: false,
+                initialHeight: randTet.initialHeight,
+                initialWidth: randTet.initialWidth
+            })
+        }
     }, [])
 
     return [player, updatePlayerPos, resetPlayer, playerRotate];
