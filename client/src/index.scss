@@ -48,16 +48,13 @@ button {
 // NAVBAR
 .navbar {
   p {
-    text-align: center;
     font-size: 3em;
     font-family: 'Press Start 2P', cursive;
-
-    margin: 20px 0 20px 0;
+    margin-left: auto !important;
+    margin-right: auto !important;
     }
-  
   a {
     text-decoration: none;
-  
     -webkit-transition: all 0.5s;
     -moz-transition: all 0.5s;
     transition: all 0.5s;
@@ -121,7 +118,7 @@ button {
     border-radius: 6px !important;
   }
   th {
-
+    text-align: center;
     height: 50px;
     font-weight: bold;
     
@@ -140,12 +137,12 @@ button {
 
 //userInfo
 
-.userInfo {
+.userInfo { 
   display: table;
   background-color: white;
   border: 2px solid #333;
   width: 372px !important;
-  height: 600px !important;
+  height: 655px !important;
   min-width: 372px;
   max-width: 372px;
   background: #111;
@@ -157,7 +154,14 @@ button {
 }
 
 .playerInfo {
-  height: 50px;
-  width: 372px !important;
+  position: relative;
+  height: 30px;
+  margin-bottom: 4px;
+  width: 375px !important;
+  border: solid 2px white;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
   background-color: $logo-red-cololr;
+  color: $dark-font;
+  padding-left: 10px;
 }

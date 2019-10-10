@@ -9,12 +9,12 @@ const UserContainer = () => {
     const { input, username } = useSelector(state => state.username, "");
     // const [onChangeUsername, onSubmit] = useActions([change_username, submit_username],[]);
 
-    const onChange = (e) => {
+    const onChange = e => {
         dispatch(change_username(e.target.value));      
     }
         
 
-    const onSubmitUsername = (e) => {
+    const onSubmitUsername = e => {
         e.preventDefault();  
         dispatch(submit_username(input));
         dispatch(change_username(''));
