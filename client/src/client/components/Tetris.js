@@ -99,20 +99,22 @@ const Tetris = () => {
     }
 
     const move = e => {
-        e.preventDefault();
-        if (!gameOver && !player.gameOver) {
-            if (e.keyCode === 37) { //left arrow
-                movePlayer(-1);
-            } else if (e.keyCode === 39) { //right arrow
-                movePlayer(1);
-            } else if (e.keyCode === 40) { //down arrow
-                dropPlayer();
-            } else if (e.keyCode === 38) { //up arrow
-                playerRotate(stage, 1);
-            } else if (e.keyCode === 90) { //z key
-                playerRotate(stage, -1);
-            } else if (e.keyCode === 32) { //space bar
-                hardDropPlayer();
+        if (username) {
+            e.preventDefault();
+            if (!gameOver && !player.gameOver) {
+                if (e.keyCode === 37) { //left arrow
+                    movePlayer(-1);
+                } else if (e.keyCode === 39) { //right arrow
+                    movePlayer(1);
+                } else if (e.keyCode === 40) { //down arrow
+                    dropPlayer();
+                } else if (e.keyCode === 38) { //up arrow
+                    playerRotate(stage, 1);
+                } else if (e.keyCode === 90) { //z key
+                    playerRotate(stage, -1);
+                } else if (e.keyCode === 32) { //space bar
+                    hardDropPlayer();
+                }
             }
         }
     }
