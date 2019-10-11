@@ -132,7 +132,9 @@ button {
   tr td {
     text-align: center;
   }
-  
+  .create {
+    position: relative;
+  }
 }
 
 //userInfo
@@ -164,4 +166,22 @@ button {
   background-color: $logo-red-cololr;
   color: $dark-font;
   padding-left: 10px;
+}
+
+.board{
+  display: grid;
+    grid-template-rows: repeat(
+        20,
+        12px
+    );
+    grid-template-columns: repeat(
+        12,
+        12px
+    );
+    grid-gap: 1px;
+    border: 2px solid #333;
+    border-top: none;
+    width: 144px;
+    max-width: 144px;
+    background: #111;
 }

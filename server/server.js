@@ -31,6 +31,8 @@ const sharedsession = require('express-socket.io-session');
 
 // Router
 /* const rooms = require(''); */
+const room = require("./routes/room");
+
 
 //session settings
 //session secret is stored in serverConfig.json which is gitignored for version control.
@@ -72,6 +74,8 @@ app.use(
 
 app.use(bodyParser.json());
 
+// Routes
+app.use("/api/room/", room);
 
 const port = process.env.PORT || 5000;
 

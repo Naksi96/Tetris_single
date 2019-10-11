@@ -124,7 +124,7 @@ const Tetris = () => {
     }, dropTime)
 
     return (
-        <div className="styledTetris" role="button" tabIndex="0" onKeyDown={e => move(e)} onKeyUp={keyUp}>
+        <div className="styledTetris col" role="button" tabIndex="0" onKeyDown={e => move(e)} onKeyUp={keyUp}>
                 <aside>
                     {player.gameOver ? (
                         <Display gameOver={player.gameOver} text="Game Over" />
