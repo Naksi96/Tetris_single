@@ -29,8 +29,6 @@ const Tetris = () => {
 
     const { username } = useSelector(state => state.username, "");
 
-    console.log(username)
-
     const movePlayer = dir => {
         if (!checkCollision(player, stage, { x: dir, y: 0 })) {
             updatePlayerPos({ x: dir, y: 0 });

@@ -14,7 +14,7 @@ const App = () => (
       <Navbar />
       <StyledDashboard className="row">
         <Route exact path="/" component={Lobby} />
-        <Route exact path="/:room/:host" component={Players}/>
+        <Route exact path="/:room" component={Players}/>
         <Tetris />
       </StyledDashboard>
     </div>
