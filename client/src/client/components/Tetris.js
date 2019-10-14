@@ -95,6 +95,10 @@ const Tetris = () => {
             updatePlayerPos({ x: 0, y: (i - 1), collided: true });
         }
     }
+    
+    const focusOnStage = () => {
+        document.getElementById('gameStage').focus();
+    } 
 
     const move = e => {
         if (username) {
@@ -122,7 +126,7 @@ const Tetris = () => {
     }, dropTime)
 
     return (
-        <div className="styledTetris col" role="button" tabIndex="0" onKeyDown={e => move(e)} onKeyUp={keyUp}>
+        <div id="gameStage" className="styledTetris col" role="button" tabIndex="0" onKeyDown={e => move(e)} onKeyUp={keyUp}>
                 <aside>
                     {player.gameOver ? (
                         <Display gameOver={player.gameOver} text="Game Over" />
@@ -133,9 +137,11 @@ const Tetris = () => {
                             <Display text={`Level: ${level}`} />
                         </div>
                     )}
-                    <StartButton callback={startGame} />
+                    <div onClick={e => focusOnStage()}>
+                        <StartButton callback={startGame} />
+                    </div>
                 </aside>
-                {username ? <Stage  stage={stage} username={username}/> : (<UserContainer/>)
+                {username ? <Stage stage={stage} username={username} /> : (<UserContainer/>)
                 }
                 <aside>
                     <div>

@@ -12,12 +12,19 @@ body {
   background-color: $dark-color;
   font-family: 'Noto Sans', sans-serif;
   max-width: 1198.98px;
+  &:focus {
+    outline: none;
+  }
 }
+
 
 input {
   background-color: black;
   border: 1px solid $dark-border;
   color: white;
+  &:focus {
+    outline: none;
+  }
 }
 
 button {
@@ -28,7 +35,15 @@ button {
     background-color: $dark-button;
     color: black;
   }
+  &:focus {
+    outline: none;
+  }
+}
 
+div {
+  &:focus {
+    outline: none;
+  }
 }
 
 .styledTetris {
